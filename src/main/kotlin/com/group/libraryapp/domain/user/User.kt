@@ -31,4 +31,8 @@ class User(
         val targetHistory = userLoanHistories.first {history -> history.bookName == bookName}
         targetHistory.doReturn()
     }
+
+    fun updateName(name: String) {
+        this.name = name
+    }
 }

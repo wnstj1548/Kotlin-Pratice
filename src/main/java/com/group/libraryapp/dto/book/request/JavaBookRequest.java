@@ -1,6 +1,6 @@
 package com.group.libraryapp.dto.book.request;
 
-public class BookRequest {
+public class JavaBookRequest {
 
   private String name;
 
@@ -8,7 +8,7 @@ public class BookRequest {
     return name;
   }
 
-  public BookRequest(String name) {
+  public JavaBookRequest(String name) {
     this.name = name;
   }
 }
