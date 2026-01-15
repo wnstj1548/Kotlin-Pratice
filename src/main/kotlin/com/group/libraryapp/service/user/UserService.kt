@@ -5,8 +5,8 @@ import com.group.libraryapp.domain.user.UserRepository
 import com.group.libraryapp.dto.user.request.UserCreateRequest
 import com.group.libraryapp.dto.user.request.UserUpdateRequest
 import com.group.libraryapp.dto.user.response.UserResponse
+import com.group.libraryapp.util.findByIdOrThrow
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -14,21 +14,21 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 class UserService @Autowired constructor(
     private val userRepository: UserRepository,
-    ) {
+) {
 
     fun saveUser(request: UserCreateRequest) {
-        val user = User(id = null, name = request.name, age = request.age)
+        val user = User(name = request.name, age = request.age)
         userRepository.save(user)
     }
 
     @Transactional(readOnly = true)
     fun getUsers() : List<UserResponse> {
 //        return userRepository.findAll().map(UserResponse::fromEntity)
-        return userRepository.findAll().map {it -> UserResponse.fromEntity(it) }
+        return userRepository.findAll().map { UserResponse.fromEntity(it) }
     }
 
     fun updateUserName(request: UserUpdateRequest) {
-        val user: User = userRepository.findByIdOrNull(request.id) ?: throw IllegalArgumentException("해당하는 유저가 없습니다")
+        val user: User = userRepository.findByIdOrThrow(request.id)
         user.updateName(request.name)
     }
 

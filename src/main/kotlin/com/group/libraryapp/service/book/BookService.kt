@@ -13,14 +13,14 @@ import javax.transaction.Transactional
 
 @Transactional
 @Service
-class BookService @Autowired constructor(
+class BookService(
     private val bookRepository: BookRepository,
     private val userRepository: UserRepository,
     private val userLoanHistoryRepository: UserLoanHistoryRepository,
-    ) {
+) {
 
     fun saveBook(request: BookRequest) {
-        bookRepository.save(Book(id = null, name = request.name))
+        bookRepository.save(Book(name = request.name))
     }
 
     fun loanBook(request: BookLoanRequest) {

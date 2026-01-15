@@ -1,6 +1,6 @@
 package com.group.libraryapp.dto.user.request
 
-class UserUpdateRequest(
+data class UserUpdateRequest(
     val id: Long,
     val name: String,
 ) {

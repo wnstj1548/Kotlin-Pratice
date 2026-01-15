@@ -23,6 +23,11 @@ class User(
     @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], orphanRemoval = true)
     val userLoanHistories: MutableList<UserLoanHistory> = mutableListOf()
 ) {
+
+    init {
+        if(name.isBlank()) throw IllegalArgumentException("이름은 비어있을 수 없습니다.")
+    }
+
     fun loanBook(book: Book) {
         this.userLoanHistories.add(UserLoanHistory(user = this, bookName = book.name, isReturn = false))
     }
