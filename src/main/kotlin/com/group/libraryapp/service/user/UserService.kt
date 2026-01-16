@@ -1,7 +1,7 @@
 package com.group.libraryapp.service.user
 
 import com.group.libraryapp.domain.user.User
-import com.group.libraryapp.domain.user.UserRepository
+import com.group.libraryapp.repository.user.UserRepository
 import com.group.libraryapp.domain.user.loanhistory.UserLoanStatus
 import com.group.libraryapp.dto.user.request.UserCreateRequest
 import com.group.libraryapp.dto.user.request.UserUpdateRequest
@@ -41,6 +41,6 @@ class UserService @Autowired constructor(
     }
 
     fun getUserLoanHistories(): List<UserLoanHistoryResponse> {
-        return userRepository.findAll().map(UserLoanHistoryResponse::of)
+        return userRepository.findAllWithHistories().map(UserLoanHistoryResponse::of)
     }
 }

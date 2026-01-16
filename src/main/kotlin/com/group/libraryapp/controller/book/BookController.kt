@@ -3,8 +3,10 @@ package com.group.libraryapp.controller.book
 import com.group.libraryapp.dto.book.request.BookLoanRequest
 import com.group.libraryapp.dto.book.request.BookRequest
 import com.group.libraryapp.dto.book.request.BookReturnRequest
+import com.group.libraryapp.dto.user.response.BookStatResponse
 import com.group.libraryapp.service.book.BookService
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -32,5 +34,15 @@ class BookController(
     fun returnBook(@RequestBody request: BookReturnRequest): ResponseEntity<Void> {
         bookService.returnBook(request)
         return ResponseEntity.noContent().build()
+    }
+
+    @GetMapping("/loan")
+    fun countLoanBook(): ResponseEntity<Int> {
+        return ResponseEntity.ok(bookService.countLoanedBook());
+    }
+
+    @GetMapping("/stat")
+    fun getBookStatics(): ResponseEntity<List<BookStatResponse>> {
+        return ResponseEntity.ok(bookService.getBookStatics())
     }
 }

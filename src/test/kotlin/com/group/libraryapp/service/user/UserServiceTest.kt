@@ -1,9 +1,9 @@
 package com.group.libraryapp.service.user
 
 import com.group.libraryapp.domain.user.User
-import com.group.libraryapp.domain.user.UserRepository
+import com.group.libraryapp.repository.user.UserRepository
 import com.group.libraryapp.domain.user.loanhistory.UserLoanHistory
-import com.group.libraryapp.domain.user.loanhistory.UserLoanHistoryRepository
+import com.group.libraryapp.repository.user.loanhistory.UserLoanHistoryRepository
 import com.group.libraryapp.domain.user.loanhistory.UserLoanStatus
 import com.group.libraryapp.dto.user.request.UserCreateRequest
 import com.group.libraryapp.dto.user.request.UserUpdateRequest
