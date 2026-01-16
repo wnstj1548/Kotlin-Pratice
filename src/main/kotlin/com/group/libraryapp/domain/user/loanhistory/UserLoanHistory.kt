@@ -19,9 +19,23 @@ class UserLoanHistory(
 
     val bookName: String,
 
-    var isReturn: Boolean,
+    var status: UserLoanStatus = UserLoanStatus.LOANED,
 ) {
     fun doReturn() {
-        this.isReturn = true
+        this.status = UserLoanStatus.RETURNED
+    }
+
+    companion object {
+        fun fixture(
+            user: User,
+            bookName: String = "이상한 나라의 엘리스",
+            status: UserLoanStatus = UserLoanStatus.LOANED
+        ): UserLoanHistory {
+            return UserLoanHistory(
+                user = user,
+                bookName = bookName,
+                status = status
+            )
+        }
     }
 }
